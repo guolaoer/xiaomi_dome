@@ -1,15 +1,29 @@
 <template>
-    <div>
-        <hea text="个人"></hea>
+    <div id="app">
+        <div class="head">
+
+        </div>
     </div>
 </template>
 
 
 <script>
-import Hea from '../../components/head.vue'
+
 export default{
     components:{
-        Hea
+        
     }
 }
 </script>
+
+<style scoped>
+    #app{
+        width:100%;
+        position: relative;
+    }
+    .head{
+        width: 100%;
+        height: 1.35rem;
+        background: #F37D0F;
+    }
+</style>

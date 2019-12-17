@@ -14,13 +14,9 @@ export default{
     },
     props:['text'],
     mounted(){
-      this.fn()
+
     },
     methods:{
-      //接受数值
-      fn(){
-
-      }
     }
 }
 </script>
@@ -28,12 +24,12 @@ export default{
 <style scoped>
 .hea{
     width: 100%;
-    height: 2.85rem;
+    height: .85rem;
     position: fixed;
     top: 0;
     left: 0;
 }
 .van-nav-bar{
-    height: 2.85rem;
+    height: .85rem;
 }
 </style>
