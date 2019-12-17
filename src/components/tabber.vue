@@ -1,6 +1,6 @@
 <template>
   <div class="bom">
-    <van-tabbar v-model="active" active-color="#07c160" inactive-color="#000">
+    <van-tabbar v-model="active" active-color="#8FCEEB" inactive-color="#000">
       <router-link to="/home">
         <van-tabbar-item icon="home-o">
           首页
@@ -41,9 +41,11 @@ export default {
 
 <style scoped>
   .bom{
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
+    background: #fff;
+    z-index: 100;
   }
   .van-tabbar--fixed{
     width: 100%;

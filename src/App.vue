@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <tabber></tabber>
+    <tabber v-show="fn"></tabber>
     <router-view/>
   </div>
 </template>
@@ -9,9 +9,24 @@
 import './assets/js/rem.js';
 import Tabber from './components/tabber'
 export default {
+  data(){
+    return {
+      prov:allcity.prov
+    }
+  },
   components:{
     Tabber
-  }
+  },
+  computed:{
+      fn(){
+        var r = this.$route.path
+         if( r == '/addressList' || r == '/addressEdit'){
+           return false
+         }else{
+           return true
+         }
+      }
+    }
 }
 </script>
 

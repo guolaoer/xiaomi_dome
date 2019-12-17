@@ -21,11 +21,21 @@ export default new Router({
     },
     {
       path:'/person',
-      component:()=>import('@/page/Person/Person.vue')
+      component:()=>import('@/page/Person/Person.vue'),
     },
     {
       path:'/shopping',
       component:()=>import('@/page/Shopping/Shopping.vue')
     },
+    //收货地址
+    {
+      path:'/addressList',
+      component:()=>import('@/page/Person/AddressList.vue'),
+    },
+    //地址编辑
+    {
+      path:'/addressEdit',
+      component:()=>import('@/page/Person/AddressEdit.vue'),
+    }
   ]
 })
