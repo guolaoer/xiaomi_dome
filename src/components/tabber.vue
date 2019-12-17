@@ -44,6 +44,7 @@ export default {
     position: fixed;
     bottom: 0;
     left: 0;
+    z-index:999;
   }
   .van-tabbar--fixed{
     width: 100%;
