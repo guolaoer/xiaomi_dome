@@ -88,7 +88,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'lalalalalalal',
+      msg: 'dididididi',
       msg2:'李孟波'
     }
   }
