@@ -1,12 +1,16 @@
 <template>
   <div id="app">
+    <tabber></tabber>
     <router-view/>
   </div>
 </template>
 
 <script>
+import Tabber from './components/tabber'
 export default {
-  name: 'App'
+  components:{
+    Tabber
+  }
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <hea text="首页"></hea>
+        <hea text="购物车"></hea>
     </div>
 </template>
 

@@ -10,6 +10,22 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld
-    }
+    },
+    {
+      path:'/home',
+      component:()=>import('@/page/Home/Home.vue')
+    },
+    {
+      path:'/classify',
+      component:()=>import('@/page/Classify/Classify.vue')
+    },
+    {
+      path:'/person',
+      component:()=>import('@/page/Person/Person.vue')
+    },
+    {
+      path:'/shopping',
+      component:()=>import('@/page/Shopping/Shopping.vue')
+    },
   ]
 })

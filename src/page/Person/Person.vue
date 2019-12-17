@@ -1,6 +1,6 @@
 <template>
     <div>
-        <hea text="首页"></hea>
+        <hea text="个人"></hea>
     </div>
 </template>
 

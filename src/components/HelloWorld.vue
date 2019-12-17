@@ -1,18 +1,16 @@
 <template>
   <div>
-    <tabber></tabber>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Tabber from './tabber'
 export default {
   data(){
+    return {
 
+    }
   },
-  components:{
-    Tabber,
-  }
 }
 </script>
 
