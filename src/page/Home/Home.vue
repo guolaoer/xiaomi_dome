@@ -56,7 +56,7 @@ export default{
     },
 }
 </script>
-<style>
+<style scoped>
 .box{
 	width:100%;
 }
@@ -64,7 +64,7 @@ export default{
 	width: 100%;
 	height: 1.1rem;position: fixed;
 	background: #F2F2F2;top: 0;
-    left: 0;
+    left: 0;z-index:1;
 }
 .arr_2{
 	width:0.747rem;height:0.7rem;border-radius: 50%;background: #87CEEB;
