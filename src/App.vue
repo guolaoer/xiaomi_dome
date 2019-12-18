@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <tabber></tabber>
+    <tabber v-if='this.$route.meta.falg'></tabber>
     <router-view/>
   </div>
 </template>

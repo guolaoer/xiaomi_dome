@@ -8,24 +8,34 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      component:()=>import('@/page/Home/Home.vue'),
+      meta:{falg:true}
     },
     {
       path:'/home',
-      component:()=>import('@/page/Home/Home.vue')
+      component:()=>import('@/page/Home/Home.vue'),
+      meta:{falg:true}
     },
     {
       path:'/classify',
-      component:()=>import('@/page/Classify/Classify.vue')
+      component:()=>import('@/page/Classify/Classify.vue'),
+      meta:{falg:true}
     },
     {
       path:'/person',
-      component:()=>import('@/page/Person/Person.vue')
+      component:()=>import('@/page/Person/Person.vue'),
+      meta:{falg:true}
     },
     {
       path:'/shopping',
-      component:()=>import('@/page/Shopping/Shopping.vue')
+      component:()=>import('@/page/Shopping/Shopping.vue'),
+      meta:{falg:true}
+    },
+    {
+      path:'/details',
+      name:'details',
+      component:()=>import('@/components/Details.vue'),
+      meta:{falg:false}
     },
   ]
 })
