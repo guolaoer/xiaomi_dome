@@ -32,6 +32,7 @@ export default{
     top: 0;
     left: 0;
     font-size: .3rem;
+    z-index: 100;
 }
 .van-nav-bar{
     height: .85rem;
