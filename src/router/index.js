@@ -30,12 +30,14 @@ export default new Router({
     //收货地址
     {
       path:'/addressList',
+      name:'addressList',
       component:()=>import('@/page/Person/AddressList.vue'),
     },
     //地址编辑
     {
       path:'/addressEdit',
+      name:'addressEdit',
       component:()=>import('@/page/Person/AddressEdit.vue'),
-    }
+    },
   ]
 })

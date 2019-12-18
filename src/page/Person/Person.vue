@@ -65,11 +65,11 @@ export default {
     //
     //获取数据
     fn() {
-      this.$axios
-        .get("https://shiyaming1994.github.io/mi/static/rotationChart.json")
-        .then(res => {
-          console.log(res);
-        });
+      // this.$axios
+      //   .get("https://shiyaming1994.github.io/mi/static/rotationChart.json")
+      //   .then(res => {
+      //     console.log(res);
+      //   });
     }
   },
   components: {

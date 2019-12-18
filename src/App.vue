@@ -11,7 +11,7 @@ import Tabber from './components/tabber'
 export default {
   data(){
     return {
-      prov:allcity.prov
+      
     }
   },
   components:{
