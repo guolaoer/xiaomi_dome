@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
@@ -35,6 +34,20 @@ export default new Router({
       path:'/details',
       name:'details',
       component:()=>import('@/components/Details.vue'),
+      meta:{falg:false}
+    },
+    //收货地址
+    {
+      path:'/addressList',
+      name:'addressList',
+      component:()=>import('@/page/Person/AddressList.vue'),
+      meta:{falg:false}
+    },
+    //地址编辑
+    {
+      path:'/addressEdit',
+      name:'addressEdit',
+      component:()=>import('@/page/Person/AddressEdit.vue'),
       meta:{falg:false}
     },
   ]

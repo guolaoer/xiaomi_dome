@@ -9,9 +9,14 @@
 import './assets/js/rem.js';
 import Tabber from './components/tabber'
 export default {
+  data(){
+    return {
+      
+    }
+  },
   components:{
     Tabber
-  }
+  },
 }
 </script>
 

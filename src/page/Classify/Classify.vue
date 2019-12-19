@@ -19,7 +19,8 @@
           </van-sidebar>
         </van-col>
         <van-col span="18">
-          <div class="zu" v-for="(item,index) in str" :key="index">
+          <div class='overfllow'>
+            <div class="zu" v-for="(item,index) in str" :key="index">
             <van-swipe :autoplay="1000" indicator-color="white">
               <van-swipe-item v-for="(item,index) in images" :key="index">
                 <img :src="item.img" alt />
@@ -40,6 +41,9 @@
               <van-button type="warning">查看更多</van-button>
             </div>
           </div>
+          <div class='lm' style='width:100%;height:.9rem;'></div>
+          </div>
+          
         </van-col>
       </van-row>
     </van-pull-refresh>
@@ -86,7 +90,7 @@ export default {
       var h = 0;
       var index = $(this).index();
       h = index * $(".zu").height() + 1;
-      $(".van-col--18").animate(
+      $(".overfllow").animate(
         {
           scrollTop: h
         },
@@ -96,13 +100,13 @@ export default {
         }
       );
     });
-    $(".van-col--18").scroll(function() {
+    $(".overfllow").scroll(function() {
       var H = $(this).scrollTop();
       if (mark == 1) {
         $(".zu").each(function() {
           var index = $(this).index();
           var h = index * $(".zu").height();
-          if (H > h) {
+          if (H > h){
             $(".van-sidebar-item")
               .eq(index)
               .addClass("van-sidebar-item--select")
@@ -200,8 +204,20 @@ export default {
   height: 100;
 }
 .van-col--18 {
-  height: 90vh;
+  height: 90vh; 
+  overflow: hidden;
+   
+}
+.overfllow{
+  width: 100%;
+  height: 100%;
   overflow-y: scroll;
+  // overflow: auto;
+  // padding-right: 17px;
+  // box-sizing:content-box;
+  position: relative;
+  top: 0;
+  right:-.1rem;
 }
 .van-sidebar-item--select {
   color: red;
