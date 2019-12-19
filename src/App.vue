@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <tabber v-show="fn"></tabber>
+    <tabber v-if='this.$route.meta.falg'></tabber>
     <router-view/>
   </div>
 </template>
@@ -17,16 +17,6 @@ export default {
   components:{
     Tabber
   },
-  computed:{
-      fn(){
-        var r = this.$route.path
-         if( r == '/addressList' || r == '/addressEdit'){
-           return false
-         }else{
-           return true
-         }
-      }
-    }
 }
 </script>
 

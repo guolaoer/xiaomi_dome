@@ -1,9 +1,13 @@
 <template>
+<div>
   <div class="hea">
     <van-nav-bar :title="text" left-text="返回" @click-left="onClickLeft" left-arrow>
       <van-icon name="search" slot="right" />
     </van-nav-bar>
   </div>
+  <div class='top'></div>
+</div>
+  
 </template>
 
 <script>
@@ -40,5 +44,9 @@ export default{
 }
 .van-nav-bar__right {
   font-size: .3rem;
+}
+.top{
+  width: 100%;
+  margin-top: .85rem;
 }
 </style>
