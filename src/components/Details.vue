@@ -1,27 +1,28 @@
 <template>
-  <div class="details" v-if="arr.length!=0">
+  <div class="details" v-if="arr.length != 0">
     <div class="return" @click="fn()">
       <van-icon name="arrow-left" color="#fff" />
     </div>
     <van-swipe :autoplay="1000" indicator-color="white">
-      <van-swipe-item v-for="(item,index) in arr[n].imgList" :key="index">
+      <van-swipe-item v-for="(item, index) in arr[n].imgList" :key="index">
         <img :src="item.img" alt />
       </van-swipe-item>
     </van-swipe>
     <div class="describe">
-      <p class="name">{{arr[n].name}}</p>
-      <p class="des">{{arr[n].info}}</p>
-      <p class="price">￥{{arr[n].price}}</p>
+      <p class="name">{{ arr[n].name }}</p>
+      <p class="des">{{ arr[n].info }}</p>
+      <p class="price">￥{{ arr[n].price }}</p>
     </div>
     <div class="configuration">
       <div class="m">
         <p>已选</p>
-        {{arr[n].name}}
-        {{arr[n].edition[0].Memory}}
+        {{ arr[n].name }}
+        {{ arr[n].edition[0].Memory }}
         <van-icon name="arrow" style="right:-20px" />
       </div>
       <div class="m">
-        <p>送至</p>北京
+        <p>送至</p>
+        北京
         <van-icon name="arrow" style="right:-184px" />
       </div>
     </div>
@@ -29,94 +30,136 @@
       <img :src="arr[n].info_img[0].img" alt style="width:100%;" />
       <img :src="arr[n].info_img[1].img" alt style="width:100%" />
     </div>
-    <div class="di">
-      <div class="tiao">
-        <ul>
-          <li @click="home">
-            <van-icon name="home-o" />
-            <p>首页</p>
-          </li>
-          <li @click="shopping">
-            <van-icon name="friends-o" />
-            <p>购物车</p>
-          </li>
-        </ul>
-      </div>
-      <van-button round type="info" @click='falg=true'>加入购物车</van-button>
-    </div>
-    <div class='detail' v-show='falg'>
-        <div class='particulars'>
-         <van-icon name="cross" color='#a0a0a0' @click='falg=false'/>
-         <div class='pc'>
-             <img :src="arr[n].edition[jk].color[w].img" alt="">
-             <p>￥{{arr[n].edition[jk].edition_price}}</p>
-             <p>{{arr[n].name}}{{arr[n].edition[jk].Memory}}{{arr[n].edition[jk].color[w].color_list}}</p>
-         </div>
-         <div class='versions'>
-          <p>版本</p>
-          <div :class='{liu:true,liuborder:jk==index}' v-for='(item,index) in arr[n].edition' :key="index" @click='jk=index'>
-              {{item.Memory}}
-               <p>{{item.edition_price}}元</p>
-          </div>
-         </div>
-         <div class='color'>
-        <p>颜色</p>
-        <ul>
-            <li v-for='(item,index) in arr[n].edition[jk].color' :key='index' :class='{bt:true,bordercolor:w==index}' @click='w=index'>{{item.color_list}}</li>
-        </ul>
-         </div>
-         <div class='shuliang'>
-             购买数量
-             <div class='operation'>
-                 <button @click='jian'>-</button>
-                 <input type="text" v-model='c'>
-                 <button @click='c++'>+</button>
-             </div>
-         </div>
-         <van-button round type="info">加入购物车</van-button>
+      <van-goods-action>
+          <van-goods-action-icon icon="chat-o" text="首页" @click="home" />
+          <van-goods-action-icon
+            icon="cart-o"
+            text="购物车"
+            @click="onClickIcon"
+            :info='Always'
+          />
+          <van-goods-action-button
+            type="warning"
+            text="加入购物车"
+            @click="falg=true"
+          />
+        </van-goods-action>
+    <div class="detail" v-show="falg">
+      <div class="particulars">
+        <van-icon name="cross" color="#a0a0a0" @click="falg = false" />
+        <div class="pc">
+          <img :src="arr[n].edition[jk].color[w].img" alt="" />
+          <p>￥{{ arr[n].edition[jk].edition_price }}</p>
+          <p>
+            {{ arr[n].name }}{{ arr[n].edition[jk].Memory
+            }}{{ arr[n].edition[jk].color[w].color_list }}
+          </p>
         </div>
+        <div class="versions">
+          <p>版本</p>
+          <div
+            :class="{ liu: true, liuborder: jk == index }"
+            v-for="(item, index) in arr[n].edition"
+            :key="index"
+            @click="jk = index"
+          >
+            {{ item.Memory }}
+            <p>{{ item.edition_price }}元</p>
+          </div>
+        </div>
+        <div class="color">
+          <p>颜色</p>
+          <ul>
+            <li
+              v-for="(item, index) in arr[n].edition[jk].color"
+              :key="index"
+              :class="{ bt: true, bordercolor: w == index }"
+              @click="w = index"
+            >
+              {{ item.color_list }}
+            </li>
+          </ul>
+        </div>
+        <div class="shuliang">
+          购买数量
+          <div class="operation">
+            <button @click="c <= 1 ? 1 : c--">-</button>
+            <input type="text" v-model="c" />
+            <button @click="c++">+</button>
+          </div>
+        </div>
+        <van-button round type="info" @click="fnshop">加入购物车</van-button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import '../assets/js/jq'
+import "../assets/js/jq";
 export default {
   data() {
     return {
-      w:0,
+      w: 0,
       n: Number(this.$route.query.i),
       arr: [],
-      falg:false,
-      c:0,
-      jk:0
+      falg: false,
+      c: 1,
+      jk: 0,
+      str: JSON.parse(localStorage.getItem("card")) || [],
+      Always:0
     };
   },
-  mounted(){
+  mounted() {
+    this.Alway()
     this.$axios
       .get("https://shiyaming1994.github.io/mi/static/homeGoods.json?page=1")
       .then(res => {
         this.arr = res.data;
-        console.log(this.arr)
-        console.log(this.arr[this.n])
       });
   },
   methods: {
+    Alway(){
+          for(var i=0;i<this.str.length;i++){
+                this.Always+=this.str[i].count
+          }
+    },
     fn() {
       this.$router.go(-1);
     },
     home() {
       this.$router.push("/home");
     },
-    shopping() {
+    fnshop() {
+      var obj = {};
+      (obj.price = this.arr[this.n].edition[this.jk].edition_price),
+        (obj.name = this.arr[this.n].name);
+      obj.img = this.arr[this.n].edition[this.jk].color[this.w].img;
+      obj.count = this.c;
+      if (this.str.length == 0) {
+        this.str.push(obj);
+      } else {
+        console.log(this.str)
+        for (var i = 0; i < this.str.length; i++) { 
+          if (this.str[i].name == obj.name && this.str[i].price == obj.price) {
+            this.str[i].count = this.str[i].count + obj.count;
+            localStorage.setItem("card", JSON.stringify(this.str));
+      this.$router.push("/shopping");
+            return;
+          }
+          }
+            console.log(2)
+            this.str.push(obj);
+            localStorage.setItem("card", JSON.stringify(this.str));
+            this.$router.push("/shopping");
+
+        
+      }
+      localStorage.setItem("card", JSON.stringify(this.str));
       this.$router.push("/shopping");
     },
-    jian(){
-        this.c--
-        if(this.c<=0){
-            this.c=0
-        }
-    }
+     onClickIcon() {
+       this.$router.push("/shopping");
+    },
   }
 };
 </script>
@@ -194,164 +237,137 @@ export default {
   width: 100%;
   height: 15.62rem;
 }
-.di {
-  width: 90%;
-  height: 0.85rem;
+.detail {
+  width: 100%;
+  height: 100vh;
+  background: #313131a1;
   position: fixed;
-  bottom: 0.2rem;
-  left: 5%;
-  background: #ffffff;
-  border-radius: 5px;
+  top: 0;
+  left: 0;
 }
-.tiao {
-  width: 2rem;
-  height: 0.9rem;
+.particulars {
+  width: 100%;
+  height: 8.5rem;
+  background: #fff;
+  border-radius: 10px 10px 0 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 0 0.2rem;
+  box-sizing: border-box;
+}
+.particulars > .van-icon {
+  top: 0.2rem;
+  right: -5.7rem;
+}
+.pc {
+  width: 100%;
+  height: 1.7rem;
+}
+.pc img {
+  width: 1.7rem;
+  height: 1.7rem;
   float: left;
 }
-.tiao > ul {
-  width: 2rem;
-  height: 0.9rem;
-  display: flex;
-  justify-content: space-around;
+.pc p:first-of-type {
+  width: 1.3rem;
+  height: 0.33rem;
+  font-size: 0.3rem;
+  font-weight: bold;
+  margin-top: 0.4rem;
+  float: left;
+  line-height: 0.3rem;
+  margin-left: 0.1rem;
+}
+.pc p:last-of-type {
+  width: 70%;
+  float: left;
+  line-height: 0.8rem;
+  margin-left: 0.1rem;
+  font-size: 0.25rem;
+}
+.versions {
+  width: 100%;
+  height: 1.8rem;
+  margin-top: 0.4rem;
+}
+.liu {
+  width: 90%;
+  height: 0.6rem;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin: auto;
+  margin-top: 0.2rem;
+  line-height: 0.6rem;
+  font-size: 0.2rem;
+  text-indent: 0.2rem;
+}
+.liuborder {
+  border: 1px solid #f56600;
+  color: #f56600;
+}
+.liu p {
+  float: right;
+  margin-right: 0.2rem;
+}
+.color {
+  width: 100%;
+  height: 1.6rem;
+  margin-top: 0.4rem;
+}
+.color > ul {
+  width: 100%;
+  height: 0.6rem;
+  margin-top: 0.3rem;
+  margin-left: 0.2rem;
+}
+.bt {
+  float: left;
+  width: 1.1rem;
+  height: 0.6rem;
+  border: 1px solid #cccccc;
+  color: #cccccc;
+  font-size: 0.3rem;
   text-align: center;
-  align-items: center;
+  line-height: 0.6rem;
+  margin-right: 0.2rem;
 }
-.di>.van-button--normal {
-  padding: 0 40px;
-  top: 0.05rem;
-  right: -1rem;
+.bordercolor {
+  float: left;
+  width: 1.1rem;
+  height: 0.6rem;
+  border: 1px solid #f56600;
+  color: #f56600;
+  font-size: 0.3rem;
+  text-align: center;
+  line-height: 0.6rem;
+  margin-right: 0.2rem;
 }
-.detail{
-    width: 100%;
-    height: 100vh;
-    background: #313131a1;
-    position: fixed;
-    top: 0;
-    left: 0;
+.shuliang {
+  width: 100%;
+  height: 0.7rem;
+  margin-top: 0.1rem;
+  font-size: 0.3rem;
+  line-height: 0.7rem;
 }
-.particulars{
-    width: 100%;
-    height: 8.5rem;
-    background: #fff;
-    border-radius: 10px 10px 0 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding: 0 .2rem;
-    box-sizing: border-box;
+.operation {
+  width: 2.9rem;
+  height: 0.7rem;
+  float: right;
 }
- .particulars>.van-icon{
-     top: .2rem;
-     right: -5.7rem;
- }
- .pc{
-     width: 100%;
-     height: 1.7rem;
- }
- .pc img{
-     width: 1.7rem;
-     height: 1.7rem;
-     float: left;
- }
- .pc p:first-of-type{
-     width: 1.3rem;
-     height: .33rem;
-     font-size: .3rem;
-     font-weight: bold;
-     margin-top: .4rem;
-     float: left;
-     line-height: .3rem;
-     margin-left: .1rem;
- }
- .pc p:last-of-type{
-     width: 70%;
-     float: left;
-     line-height: .8rem;
-     margin-left: .1rem;
-     font-size: .25rem;
- }
- .versions{
-     width: 100%;
-     height: 1.8rem;
-     margin-top: .4rem;
- }
- .liu{
-     width: 90%;
-     height: .6rem;
-     border:1px solid #ccc;
-     box-sizing: border-box;
-     margin: auto;
-      margin-top: .2rem;
-     line-height: .6rem;
-     font-size: .2rem;
-     text-indent: .2rem;
- }
- .liuborder{
-     border:1px solid #f56600;
-     color:#f56600;
- }
- .liu p{
-      float:right;
-      margin-right: .2rem;
- }
- .color{
-     width: 100%;
-     height: 1.6rem;
-     margin-top: .4rem
- }
- .color>ul{
-     width: 100%;
-     height: .6rem;
-     margin-top: .3rem;
-     margin-left: .2rem;
- }
- .bt{
-   float: left;
-   width: 1.1rem;
-   height: .6rem;
-   border: 1px solid #cccccc;
-   color: #cccccc;
-   font-size: .3rem;
-   text-align: center;
-   line-height: .6rem;
-   margin-right: .2rem;
- }
- .bordercolor{
-      float: left;
-   width: 1.1rem;
-   height: .6rem;
-     border: 1px solid #f56600;
-     color: #f56600;
-     font-size: .3rem;
-   text-align: center;
-   line-height: .6rem;
-   margin-right: .2rem;
- }
- .shuliang{
-     width: 100%;
-     height: .7rem;
-     margin-top: .1rem;
-     font-size: .3rem;
-     line-height: .7rem;
- }
- .operation{
-     width: 2.9rem;
-     height: .7rem;
-     float:right;
- }
- .operation>button{
-     width: .85rem;
-     height: .7;
-     float: left;
- }
- .operation>input{
-     width: .75rem;
-     height: .7rem;
-     float: left;
-     text-align: center; 
- }
- .particulars>.van-button--normal{
-     padding: 0 2.4rem;
-     top: .3rem;
- }
+.operation > button {
+  width: 0.85rem;
+  height: 0.7;
+  float: left;
+}
+.operation > input {
+  width: 0.75rem;
+  height: 0.7rem;
+  float: left;
+  text-align: center;
+}
+.particulars > .van-button--normal {
+  padding: 0 2.4rem;
+  top: 0.3rem;
+}
 </style>

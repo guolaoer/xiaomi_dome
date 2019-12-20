@@ -20,11 +20,11 @@
     </van-swipe>
     <nav>
       <van-grid :border="false" :column-num="5">
-        <van-grid-item icon="photo-o" text="icon1" />
-        <van-grid-item icon="photo-o" text="icon2" />
-        <van-grid-item icon="photo-o" text="icon3" />
-        <van-grid-item icon="photo-o" text="icon4" />
-        <van-grid-item icon="photo-o" text="icon5" />
+        <van-grid-item icon="balance-pay" text="icon1" />
+        <van-grid-item icon="other-pay" text="icon2" />
+        <van-grid-item icon="like-o" text="icon3" />
+        <van-grid-item icon="qr-invalid" text="icon4" />
+        <van-grid-item icon="orders-o" text="icon5" />
       </van-grid>
     </nav>
     <ul>

@@ -28,7 +28,7 @@ export default new Router({
     {
       path:'/shopping',
       component:()=>import('@/page/Shopping/Shopping.vue'),
-      meta:{falg:true}
+      meta:{falg:false}
     },
     {
       path:'/details',
